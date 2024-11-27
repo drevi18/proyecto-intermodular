@@ -1,0 +1,17 @@
+Realizad en grupo un documento con el siguiente índice de contenidos sobre el proyecto asignado y siguiendo el modelo facilitado de Especificaciones y planificación (disponible en EDE). Los RF y RNF se clasificarán por subsistema, cada componente del equipo pondrá los suyos, aunque todos quedarán revisados por todos.
+
+El equipo acordará una plantilla excel común que rellenará cada miembro del equipo, (estas plantillas rellendas por cada experto se adjuntarán en el anexo) calculando finalmente la media de dichas estimaciones.
+
+Índice de contenidos mínimo
+  Título (frase resumen) del proyecto
+  Cliente
+  Objetivos
+  Lista de Requisitos
+    Funcionales
+    No funcionales
+  Tabla de funcionalidades. Resumir en una tabla las funciones del sistema organizadas en categorías:
+    Evidentes: deben hacerse y el usuario es consciente de que se hacen.
+    Ocultas: deben hacerse, pero no son visibles para el usuario.
+    Opcionales (adornos): pueden no realizarse y se pueden incorporar sin alterar al resto de las funciones.
+  Planificación y Estimación de costes del proyectos
+  Anexos1: Entrega la plantilla o plantillas de la estimación temporal (juicio de expertos) .
