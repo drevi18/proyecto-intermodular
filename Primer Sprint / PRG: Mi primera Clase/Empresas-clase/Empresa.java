@@ -2,6 +2,9 @@ public class Empresa{
     private String nombre, mail, estado,observaciones;
     private int codigo, cif, telefono, diainactividad,mesinactividad,anyoinactividad,diacontratacion,mescontratacion,anyocontratacion;
 
+    public Empresa(){
+    }
+    
     public Empresa(int cod, int ci, String nom, int tlf,int diacontrata,int mescontrata, int anyocontrata){
         codigo=cod;
         cif=ci;
