@@ -2,6 +2,10 @@ public class Encargado{
     private int diainicio, mesinicio, anyoinicio, diafin, mesfin, anyofin;
     private String nombre, apellidos;
 
+    public Encargado(){
+        
+    }
+
     public Encargado(String nom, String ape){
         nombre=nom;
         apellidos=ape;
