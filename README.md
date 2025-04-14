@@ -7,3 +7,11 @@
 - PAG WEB WIREFRAME: [Aquí](https://miro.com/welcomeonboard/WCswUFE4RHAyaDhLRzIvTzN6T1ZzT1pGSTJFaStGY3FSRTYvRTBMUXJFWDdiTmlrdmszVzhuWXVtMFFtdTc1TEtINXpNSWVHekREZ3JmWFMxL010MjVBRGR0dFlFNHo0NlRtL2JIRE1XcnRZS2Q4elVUZjNmVGRaT2JYVDZOMEZ0R2lncW1vRmFBVnlLcVJzTmdFdlNRPT0hdjE=?share_link_id=71524528921 "Ir a Miro")
 
 - Acceso a la página de servicios [Click aquí](Página/ServiciosMenu.html)
+
+
+| Nombre | Susbsistema      |
+|--------|------------------|
+| Isaac  | Servicios        |
+| Sara   | Economía         |
+| Carlos | Recursos humanos |
+| Reina  | Incidencias      |
