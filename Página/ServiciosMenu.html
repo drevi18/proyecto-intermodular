@@ -20,38 +20,49 @@
             height: 30vh;
             background-size: cover;
         }
+        #texto-titulo{
+            background-color: rgba(0, 0, 0, 0.4);
+        }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        window.onload = function () {
             const botonAgregar = document.querySelector(".bi-plus-circle-fill");
             const contenidoPrincipal = document.querySelector(".p-4");
             let alternarColor = true; // Alternar entre color-base y sin color
 
-            botonAgregar.addEventListener("click", () => {
+            botonAgregar.addEventListener("click", function () {
                 // Crear el nuevo div
                 const nuevoDiv = document.createElement("div");
-                nuevoDiv.className = `d-flex align-items-center py-4 ${alternarColor ? "" : "color-base"}`;
+                if (!alternarColor){
+                    nuevoDiv.className = `d-flex align-items-center py-4 color-base`;
+                } else{
+                    
+                    nuevoDiv.className = `d-flex align-items-center py-4`;
+                }
+
                 alternarColor = !alternarColor; // Alternar el color para el próximo div
 
                 // Contenido del nuevo div
                 nuevoDiv.innerHTML = `
+                <div class="container">
                     <div class="row justify-content-around">
                         <div class="col-md-3 d-flex align-items-center justify-content-center justify-content-md-end text-center text-md-start">
-                            <h2>Lorem ipsum</h2>
+                            <h2>Nuevo Servicio</h2>
                         </div>
                         <div class="col-md-5 d-flex align-items-center">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestias ut veritatis corrupti libero voluptas voluptatibus eveniet, voluptate voluptatum necessitatibus aliquid nostrum eius ipsa inventore cupiditate aperiam, iste eligendi. Quae?</p>
+                            <p class="text center">Presiona el botón de editar para poder poner la información deseada del servicio</p>
                         </div>
                         <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
                             <a href="./Servicio.html" class="btn btn-primary">Editar</a>
                         </div>
                     </div>
+                </div>
                 `;
 
                 // Insertar el nuevo div antes del SVG
                 contenidoPrincipal.insertBefore(nuevoDiv, botonAgregar.parentElement);
             });
-        });
+        };
     </script>
     <title>Plantilla</title>
 </head>
@@ -81,7 +92,7 @@
 
     <!--Titulo-->
     <div id="titulo" class="justify-content-center align-items-center d-flex">
-        <h1 class="text-black text-center">GESTIONA TUS SERVICIOS</h1>
+        <h1 class="text-white text-center p-5" id="texto-titulo">GESTIONA TUS SERVICIOS</h1>
     </div>
 
     <!-- Main Content -->
@@ -91,10 +102,10 @@
                  <div class="container">
                      <div class="row justify-content-around">
                          <div class="col-md-3 d-flex align-items-center justify-content-center justify-content-md-end text-center text-md-start">
-                             <h2>Lorem ipsum</h2>
+                             <h2>Nuevo Servicio</h2>
                          </div>
                          <div class="col-md-5 d-flex align-items-center">
-                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestias ut veritatis corrupti libero voluptas voluptatibus eveniet, voluptate voluptatum necessitatibus aliquid nostrum eius ipsa inventore cupiditate aperiam, iste eligendi. Quae?</p>
+                             <p>Presiona el botón de editar para poder poner la información deseada del servicio</p>
                          </div>
                          <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
                              <a href="./Servicio.html" class="btn btn-primary">Editar</a>
@@ -107,10 +118,10 @@
                  <div class="container">
                      <div class="row justify-content-around">
                          <div class="col-md-3 d-flex align-items-center justify-content-center justify-content-md-end text-center text-md-start">
-                             <h2>Lorem ipsum</h2>
+                             <h2>Nuevo Servicio</h2>
                          </div>
                          <div class="col-sm-12 col-md-5 d-flex align-items-center">
-                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestias ut veritatis corrupti libero voluptas voluptatibus eveniet, voluptate voluptatum necessitatibus aliquid nostrum eius ipsa inventore cupiditate aperiam, iste eligendi. Quae?</p>
+                             <p>Presiona el botón de editar para poder poner la información deseada del servicio</p>
                          </div>
                          <div class="col-sm-12 col-md-3 text-center d-flex justify-content-center align-items-center">
                              <a href="./Servicio.html" class="btn btn-primary">Editar</a>
@@ -123,10 +134,10 @@
                  <div class="container">
                      <div class="row justify-content-around">
                          <div class="col-md-3 d-flex align-items-center justify-content-center justify-content-md-end text-center text-md-start">
-                             <h2>Lorem ipsum</h2>
+                             <h2>Nuevo Servicio</h2>
                          </div>
                          <div class="col-md-5 d-flex align-items-center">
-                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestias ut veritatis corrupti libero voluptas voluptatibus eveniet, voluptate voluptatum necessitatibus aliquid nostrum eius ipsa inventore cupiditate aperiam, iste eligendi. Quae?</p>
+                             <p>Presiona el botón de editar para poder poner la información deseada del servicio</p>
                          </div>
                          <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
                              <a href="./Servicio.html" class="btn btn-primary">Editar</a>
