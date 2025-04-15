@@ -32,6 +32,7 @@ public class Main {
         ArrayList<Presupuesto> presupuestosComunidad = new ArrayList<>();
 
             cargarEncargados(encargados);
+            cargarDevoluciones(devolucionesCuota);
     
 
         int menu;
@@ -189,7 +190,8 @@ public class Main {
             System.out.println("[0] Volver");
             System.out.println("[1] Generar informe de recibos devueltos");
             System.out.println("[2] Generar informe de cuotas devueltas");
-            System.out.println("[3] Devolver un recibo"); // Nueva opción
+            System.out.println("[3] Devolver un recibo");
+            System.out.println("[4] Exportar devoluciones");
             devolucionMenu = scanner.nextInt();
         
             switch (devolucionMenu) {
@@ -214,11 +216,14 @@ public class Main {
                     System.out.print("Ingrese el motivo de la devolución: ");
                     String motivo = scanner.nextLine();
 
-                    DevolucionRecibo nuevaDevolucion = new DevolucionRecibo(reciboId, motivo, LocalDate.now(), "ServicioX");
+                    DevolucionRecibo nuevaDevolucion = new DevolucionRecibo(reciboId, motivo, new Date(), "ServicioX");
                     devolucionesRecibo.add(nuevaDevolucion);
                     System.out.println("Recibo devuelto correctamente.");
                     break;
-        
+                    
+                case 4:
+                    exportarDevoluciones(devolucionesCuota);
+                    break;
                 case 0:
                     finDevolucion = false;
                     break;
@@ -622,6 +627,76 @@ public class Main {
 
         } catch (IOException e) {
             System.out.println("Error al escribir en los archivos: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Importa los datos de las devoluciones de un archivo CSV.
+     * 
+     * @param devoluciones Lista de devoluciones a importar.
+     */
+    public static void cargarDevoluciones(ArrayList<DevolucionCuota> devoluciones) {
+        String archivo = "DevolucionesCuota.csv";
+
+        try {
+            FileReader fr = new FileReader(archivo);
+            int letr;
+            String cadena = "";
+            boolean primeraLinea = true;
+
+            while ((letr = fr.read()) != -1) {
+                if (letr == '\n') {
+                    if (primeraLinea) {
+                        // Saltar la cabecera
+                        primeraLinea = false;
+                    } else {
+                        String[] datos = cadena.split(",");
+                        if (datos.length != 4) {
+                            System.out.println("Formato incorrecto en la línea: " + cadena);
+                        } else {
+                            int cuotaId = Integer.parseInt(datos[0]);
+                            String motivo = datos[1];
+                            String[] fechaPartes = datos[2].split("/"); 
+                            int dia = Integer.parseInt(fechaPartes[0]);
+                            int mes = Integer.parseInt(fechaPartes[1]); 
+                            int anio = Integer.parseInt(fechaPartes[2]);
+                            Date fechaDevolucion = new Date(anio, mes, dia);
+                            String propietarioAfectado = datos[3];
+                            devoluciones.add(new DevolucionCuota(cuotaId, motivo, fechaDevolucion, propietarioAfectado));
+                        }
+                    }
+                    cadena = "";
+                } else {
+                    cadena += (char) letr;
+                }
+            }
+
+            // Por si el archivo no termina con salto de línea
+            if (!cadena.isEmpty() && !primeraLinea) {
+                String[] datos = cadena.split(",");
+                if (datos.length == 4) {
+                    int cuotaId = Integer.parseInt(datos[0]);
+                    String motivo = datos[1];
+                    String[] fechaPartes = datos[2].split("/");
+                    int dia = Integer.parseInt(fechaPartes[0]);
+                    int mes = Integer.parseInt(fechaPartes[1]);
+                    int anio = Integer.parseInt(fechaPartes[2]);
+                    Date fechaDevolucion = new Date(anio, mes, dia);
+                    String propietarioAfectado = datos[3];
+                    devoluciones.add(new DevolucionCuota(cuotaId, motivo, fechaDevolucion, propietarioAfectado));
+                }
+            }
+
+            System.out.println("Datos de devoluciones cargados correctamente.");
+            fr.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo " + archivo + " no existe. Se creará uno nuevo al exportar.");
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo " + archivo + ": " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Error al convertir un número: " + e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error en el formato de la fecha: " + e.getMessage());
         }
     }
 }
