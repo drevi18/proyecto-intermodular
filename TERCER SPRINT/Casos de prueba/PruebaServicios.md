@@ -1,7 +1,5 @@
 # Casos de prueba de caja negra
 
-Los casos de prueba de caja negra se basan en los requisitos y funcionalidades del programa, sin considerar la implementación interna.
-
 ## Funcionalidad: Añadir un servicio
 
 ### Caso 1: Añadir un servicio con datos válidos
