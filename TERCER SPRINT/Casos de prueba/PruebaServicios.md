@@ -1,4 +1,4 @@
-# Casos de prueba de caja negra
+# Caso de prueba de caja negra
 
 ## Funcionalidad: Añadir un servicio
 ### Caso: Añadir un servicio con observaciones vacías
@@ -11,7 +11,7 @@
 - El servicio se añade correctamente a la lista.
 - Mensaje: "Servicio añadido correctamente."
 
-# Casos de prueba de caja blanca
+# Caso de prueba de caja blanca
 
 ## Mostrado de datos de `mostrarServicios`
 
