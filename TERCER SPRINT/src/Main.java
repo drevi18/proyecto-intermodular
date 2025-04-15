@@ -23,6 +23,7 @@ public class Main {
      */
     public static void main(String[] args) {
         ArrayList<Empresa> empresas = new ArrayList<>();
+        ArrayList<Economia> economia = new ArrayList<>();
         ArrayList<Servicio> servicios = new ArrayList<>();
         ArrayList<Encargado> encargados = new ArrayList<>();
         ArrayList<Recibo> recibo = new ArrayList<>();
@@ -188,8 +189,9 @@ public class Main {
             System.out.println("[0] Volver");
             System.out.println("[1] Generar informe de recibos devueltos");
             System.out.println("[2] Generar informe de cuotas devueltas");
+            System.out.println("[3] Devolver un recibo"); // Nueva opción
             devolucionMenu = scanner.nextInt();
-
+        
             switch (devolucionMenu) {
                 case 1:
                     System.out.println("Informe de recibos devueltos:");
@@ -197,25 +199,36 @@ public class Main {
                         System.out.println("Recibo ID: " + dr.getReciboId() + ", Motivo: " + dr.getMotivo() + ", Fecha Devolución: " + dr.getFechaDevolucion() + ", Servicio Afectado: " + dr.getServicioAfectado());
                     }
                     break;
-
+        
                 case 2:
                     System.out.println("Informe de cuotas devueltas:");
                     for (DevolucionCuota dc : devolucionesCuota) {
                         System.out.println("Cuota ID: " + dc.getCuotaId() + ", Motivo: " + dc.getMotivo() + ", Fecha Devolución: " + dc.getFechaDevolucion() + ", Propietario Afectado: " + dc.getPropietarioAfectado());
                     }
                     break;
+        
+                case 3:
+                    System.out.print("Ingrese el ID del recibo a devolver: ");
+                    int reciboId = scanner.nextInt();
+                    scanner.nextLine(); 
+                    System.out.print("Ingrese el motivo de la devolución: ");
+                    String motivo = scanner.nextLine();
 
+                    DevolucionRecibo nuevaDevolucion = new DevolucionRecibo(reciboId, motivo, LocalDate.now(), "ServicioX");
+                    devolucionesRecibo.add(nuevaDevolucion);
+                    System.out.println("Recibo devuelto correctamente.");
+                    break;
+        
                 case 0:
                     finDevolucion = false;
                     break;
-
+        
                 default:
                     System.out.println("Opción inválida.");
                     break;
             }
         } while (finDevolucion);
-    }
-
+    }        
     /**
      * Método que gestiona la creación y consulta de presupuestos anuales para comunidades.
      * 
@@ -561,6 +574,51 @@ public class Main {
             fwHTML.write("</table>\n</body>\n</html>");
             fwHTML.close();
             System.out.println("Datos de encargados exportados correctamente a " + archivoHTML);
+
+        } catch (IOException e) {
+            System.out.println("Error al escribir en los archivos: " + e.getMessage());
+        }
+    }
+
+     /**
+     * Exporta los datos de los encargados a un archivo CSV y a un archivo HTML.
+     * 
+     * @param devoluciones Lista de encargados a exportar.
+     */
+    public static void exportarDevoluciones(ArrayList<DevolucionCuota> devoluciones) {
+        String archivoCSV = "DevolucionesCuota.csv";
+        String archivoHTML = "DevolucionesCuota.html";
+
+        try {
+            FileWriter fwCSV = new FileWriter(archivoCSV, false);
+
+            
+            fwCSV.write("CuotaID,Motivo,FechaDevolucion,PropietarioAfectado\n");
+            for (DevolucionCuota dev : devoluciones) {
+                String cadena = dev.getCuotaId() + "," + dev.getMotivo() + "," + dev.getFechaDevolucion() + "," + dev.getPropietarioAfectado() + "\n";
+                fwCSV.write(cadena);
+            }
+            fwCSV.close();
+            System.out.println("Datos de devoluciones exportados correctamente a " + archivoCSV);
+
+            FileWriter fwHTML = new FileWriter(archivoHTML, false);
+            fwHTML.write("<!DOCTYPE html>\n<html>\n<head>\n<title>Devoluciones de Cuota</title>\n</head>\n<body>\n");
+            fwHTML.write("<h1>Lista de Devoluciones de Cuota</h1>\n");
+            fwHTML.write("<table style=\"border: 1px solid black;\">\n");
+            fwHTML.write("<tr style=\"border: 1px solid black;\"><th style=\"border: 1px solid black;\">Cuota ID</th><th style=\"border: 1px solid black;\">Motivo</th><th style=\"border: 1px solid black;\">Fecha Devolución</th><th style=\"border: 1px solid black;\">Propietario Afectado</th></tr>\n");
+
+            for (DevolucionCuota dev : devoluciones) {
+                fwHTML.write("<tr style=\"border: 1px solid black;\">");
+                fwHTML.write("<td style=\"border: 1px solid black;\">" + dev.getCuotaId() + "</td>");
+                fwHTML.write("<td style=\"border: 1px solid black;\">" + dev.getMotivo() + "</td>");
+                fwHTML.write("<td style=\"border: 1px solid black;\">" + dev.getFechaDevolucion() + "</td>");
+                fwHTML.write("<td style=\"border: 1px solid black;\">" + dev.getPropietarioAfectado() + "</td>");
+                fwHTML.write("</tr>\n");
+            }
+
+            fwHTML.write("</table>\n</body>\n</html>");
+            fwHTML.close();
+            System.out.println("Datos de devoluciones exportados correctamente a " + archivoHTML);
 
         } catch (IOException e) {
             System.out.println("Error al escribir en los archivos: " + e.getMessage());
