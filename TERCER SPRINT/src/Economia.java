@@ -53,4 +53,76 @@ public class Economia {
         this.dinero = dinero;
         this.estado = estado;
     }
+
+    /**
+     * Obtiene el mes de la operación económica.
+     * 
+     * @return El mes de la operación.
+     */
+    public int getMes() {
+        return mes;
+    }
+
+    /**
+     * Establece el mes de la operación económica.
+     * 
+     * @param mes El mes de la operación.
+     */
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    /**
+     * Obtiene la descripción de la operación económica.
+     * 
+     * @return La descripción de la operación.
+     */
+    public String getDesc() {
+        return desc;
+    }
+
+    /**
+     * Establece la descripción de la operación económica.
+     * 
+     * @param desc La descripción de la operación.
+     */
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    /**
+     * Obtiene la cantidad de dinero asociada a la operación económica.
+     * 
+     * @return La cantidad de dinero de la operación.
+     */
+    public double getDinero() {
+        return dinero;
+    }
+
+    /**
+     * Establece la cantidad de dinero asociada a la operación económica.
+     * 
+     * @param dinero La cantidad de dinero de la operación.
+     */
+    public void setDinero(double dinero) {
+        this.dinero = dinero;
+    }
+
+    /**
+     * Obtiene el estado de la operación económica.
+     * 
+     * @return El estado de la operación.
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * Establece el estado de la operación económica.
+     * 
+     * @param estado El estado de la operación.
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }
