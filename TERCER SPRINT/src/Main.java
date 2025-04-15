@@ -585,39 +585,44 @@ public class Main {
         }
     }
 
-     /**
-     * Exporta los datos de los encargados a un archivo CSV y a un archivo HTML.
+    /**
+     * Exporta los datos de las devoluciones a un archivo CSV y a un archivo HTML.
      * 
-     * @param devoluciones Lista de encargados a exportar.
+     * @param devoluciones Lista de devoluciones a exportar.
      */
     public static void exportarDevoluciones(ArrayList<DevolucionCuota> devoluciones) {
         String archivoCSV = "DevolucionesCuota.csv";
         String archivoHTML = "DevolucionesCuota.html";
 
         try {
+            // Exportar a CSV
             FileWriter fwCSV = new FileWriter(archivoCSV, false);
-
-            
             fwCSV.write("CuotaID,Motivo,FechaDevolucion,PropietarioAfectado\n");
             for (DevolucionCuota dev : devoluciones) {
-                String cadena = dev.getCuotaId() + "," + dev.getMotivo() + "," + dev.getFechaDevolucion() + "," + dev.getPropietarioAfectado() + "\n";
+                Date fechaDevolucion = dev.getFechaDevolucion();
+                String fechaFormateada = fechaDevolucion.getDate() + "/" + (fechaDevolucion.getMonth()) + "/" + (fechaDevolucion.getYear());
+                String cadena = dev.getCuotaId() + "," + dev.getMotivo() + "," + fechaFormateada + "," + dev.getPropietarioAfectado() + "\n";
                 fwCSV.write(cadena);
             }
             fwCSV.close();
             System.out.println("Datos de devoluciones exportados correctamente a " + archivoCSV);
 
+            // Exportar a HTML
             FileWriter fwHTML = new FileWriter(archivoHTML, false);
             fwHTML.write("<!DOCTYPE html>\n<html>\n<head>\n<title>Devoluciones de Cuota</title>\n</head>\n<body>\n");
             fwHTML.write("<h1>Lista de Devoluciones de Cuota</h1>\n");
             fwHTML.write("<table style=\"border: 1px solid black;\">\n");
-            fwHTML.write("<tr style=\"border: 1px solid black;\"><th style=\"border: 1px solid black;\">Cuota ID</th><th style=\"border: 1px solid black;\">Motivo</th><th style=\"border: 1px solid black;\">Fecha Devolución</th><th style=\"border: 1px solid black;\">Propietario Afectado</th></tr>\n");
+            fwHTML.write("<tr><th>Cuota ID</th><th>Motivo</th><th>Fecha Devolución</th><th>Propietario Afectado</th></tr>\n");
 
             for (DevolucionCuota dev : devoluciones) {
-                fwHTML.write("<tr style=\"border: 1px solid black;\">");
-                fwHTML.write("<td style=\"border: 1px solid black;\">" + dev.getCuotaId() + "</td>");
-                fwHTML.write("<td style=\"border: 1px solid black;\">" + dev.getMotivo() + "</td>");
-                fwHTML.write("<td style=\"border: 1px solid black;\">" + dev.getFechaDevolucion() + "</td>");
-                fwHTML.write("<td style=\"border: 1px solid black;\">" + dev.getPropietarioAfectado() + "</td>");
+                Date fechaDevolucion = dev.getFechaDevolucion();
+                String fechaFormateada = fechaDevolucion.getDate() + "/" + (fechaDevolucion.getMonth() + 1) + "/" + (fechaDevolucion.getYear() + 1900);
+
+                fwHTML.write("<tr>");
+                fwHTML.write("<td>" + dev.getCuotaId() + "</td>");
+                fwHTML.write("<td>" + dev.getMotivo() + "</td>");
+                fwHTML.write("<td>" + fechaFormateada + "</td>");
+                fwHTML.write("<td>" + dev.getPropietarioAfectado() + "</td>");
                 fwHTML.write("</tr>\n");
             }
 
