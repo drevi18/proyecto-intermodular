@@ -6,6 +6,10 @@ public class main {
         Scanner tec= new Scanner(System.in);
         //Sara
         ArrayList<Economia> recibo= new ArrayList<>();
+        ArrayList<DevolucionRecibo> devolucionesRecibo = new ArrayList<>();
+        ArrayList<DevolucionCuota> devolucionesCuota = new ArrayList<>();
+        ArrayList<Presupuesto> presupuestosComunidad = new ArrayList<>();
+
         Recibo rec= new Recibo();
 
         int menu;
